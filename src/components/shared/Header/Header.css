@@ -1,0 +1,16 @@
+.header {
+  font-family: monospace;
+}
+
+.header-btn {
+  background-color: #28a745;
+}
+
+.header-btn:hover {
+  border: 1px solid #28a745;
+}
+
+.menu-item:hover {
+  border-bottom: 2px solid black;
+  font-weight: bolder;
+}
