@@ -3,6 +3,7 @@ import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { useLoaderData } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const ShowDetails = () => {
   const singleShow = useLoaderData();
@@ -19,6 +20,22 @@ const ShowDetails = () => {
     url.indexOf("www"),
     url.indexOf("/", url.indexOf("www"))
   );
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const name = form.name.value;
+    const email = form.email.value;
+    const data = {
+      name,
+      email,
+    };
+    console.log(data);
+    localStorage.setItem(email, JSON.stringify(data));
+    Swal.fire("Great! Your booking is confirmed.");
+    form.reset();
+    handleClose();
+  };
 
   const renderSummary = () => {
     return { __html: summary };
@@ -59,21 +76,25 @@ const ShowDetails = () => {
                       <Modal.Title>{name}</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                      <form action="">
+                      <form onSubmit={handleSubmit}>
                         <label htmlFor="name">Name: </label>
                         <input
                           type="text"
                           id="name"
+                          name="name"
                           placeholder="Name"
                           className="ms-2 px-2 mt-2"
+                          required
                         />
                         <br />
                         <label htmlFor="email">Email: </label>
                         <input
                           type="email"
                           id="email"
+                          name="email"
                           placeholder="Name"
                           className="ms-2 px-2 mt-3"
+                          required
                         />
 
                         <div className="mt-5">
@@ -84,7 +105,11 @@ const ShowDetails = () => {
                           >
                             Close
                           </Button>
-                          <Button variant="primary">Confirm</Button>
+                          <input
+                            type="submit"
+                            value="Confirm"
+                            className="btn btn-success"
+                          ></input>
                         </div>
                       </form>
                     </Modal.Body>
