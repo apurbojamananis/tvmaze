@@ -2,7 +2,7 @@
 
 ## About this project
 
-- Create a visually appealing TV Shows
-- Include a consistent header and footer
+- Created a visually appealing TV Shows
+- Included a consistent header and footer
 - user data will save local Storage
 - used sweetalert2
