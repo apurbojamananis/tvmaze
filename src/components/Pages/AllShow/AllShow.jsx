@@ -1,14 +1,17 @@
 import { useLoaderData } from "react-router-dom";
 import SingleShow from "./SingleShow";
-
+import "./AllShow.css";
 const AllShow = () => {
   const shows = useLoaderData();
   console.log(shows);
+
   return (
     <div className="container min-vh-100">
-      <div className="row gap-md-3">
+      <div className="card-container">
         {shows.map((show) => (
-          <SingleShow key={show.show.id}></SingleShow>
+          <div key={show.show.id}>
+            <SingleShow show={show} />
+          </div>
         ))}
       </div>
     </div>

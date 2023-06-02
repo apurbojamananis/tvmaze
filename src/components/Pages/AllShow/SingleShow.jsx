@@ -1,17 +1,45 @@
-const SingleShow = () => {
+import moment from "moment";
+import "./SingleShow.css";
+import { Link } from "react-router-dom";
+
+/* eslint-disable react/prop-types */
+const SingleShow = ({ show }) => {
+  // console.log(show.show.network);
+  const { id, image, name, premiered, genres } = show.show;
+  const formattedPremiered = moment(premiered).format("dddd, Do MMMM YYYY");
+
+  console.log(id);
+
+  // const renderSummary = () => {
+  //   return { __html: summary };
+  // };
+
   return (
     <>
-      <div className="card col-md-3 col-sm-12">
-        <img src="..." className="card-img-top" alt="..." />
+      <div className="card h-100">
+        <img src={image.original} className="card-img-top image" alt="..." />
         <div className="card-body">
-          <h5 className="card-title">Card title</h5>
-          <p className="card-text">
-            Some quick example text to build on the card title and make up the
-            bulk of the cards content.
+          <div>
+            <div>
+              <p className="card-title">
+                <b>Show name: </b>
+                {name}
+              </p>
+            </div>
+            <div className=""></div>
+          </div>
+          <p className="card-title">
+            <b>Premiered:</b> {formattedPremiered}
           </p>
-          <a href="#" className="btn btn-primary">
-            Go somewhere
-          </a>
+          <p className="card-title">
+            <b>Genres:</b> {genres[0]}
+          </p>
+          
+        </div>
+        <div className="card-footer">
+          <Link to={`/showDetails/${id}`}>
+            <button className="btn btn-success">View Details</button>
+          </Link>
         </div>
       </div>
     </>
