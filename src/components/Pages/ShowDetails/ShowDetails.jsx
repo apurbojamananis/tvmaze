@@ -41,9 +41,9 @@ const ShowDetails = () => {
     return { __html: summary };
   };
   return (
-    <div className="container vh-100 mt-5">
-      <div className="d-flex">
-        <div className="card mb-3 w-75">
+    <div className="container min-vh-100 mt-5">
+      <div className="d-xl-flex">
+        <div className="card mb-3 w-100 w-lg-50">
           <div className="row g-0">
             <div className="col-md-4">
               <img

@@ -1,51 +1,62 @@
+import Button from "react-bootstrap/Button";
+import Container from "react-bootstrap/Container";
+import Form from "react-bootstrap/Form";
+import Nav from "react-bootstrap/Nav";
+import Navbar from "react-bootstrap/Navbar";
+
+import Offcanvas from "react-bootstrap/Offcanvas";
 import { Link } from "react-router-dom";
 import "./Header.css";
 
 const Header = () => {
   return (
-    <div className="header py-3">
-      <nav className="navbar navbar-expand-lg container">
-        <div className="container-fluid">
-          <Link
-            className=" ps-2 text-uppercase fs-1  text-decoration-none text-black fst-italic"
-            to="/"
-          >
-            tvmaze
-          </Link>
-          <button
-            className="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarTogglerDemo02"
-            aria-controls="navbarTogglerDemo02"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span className="navbar-toggler-icon"></span>
-          </button>
-          <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
-            <ul className="navbar-nav mx-auto mb-2 mb-lg-0">
-              <li className="nav-item ">
-                <Link className="nav-link   menu-item ms-2">Home</Link>
-              </li>
-              <li className="nav-item  ">
-                <Link className="nav-link  menu-item ms-2">About</Link>
-              </li>
-            </ul>
-            <form className="d-flex" role="search">
-              <input
-                className="form-control me-2"
-                type="search"
-                placeholder="Search"
-                aria-label="Search"
-              />
-              <button type="button" className="btn header-btn">
-                Search
-              </button>
-            </form>
-          </div>
-        </div>
-      </nav>
+    <div className="container header">
+      {["md"].map((expand) => (
+        <Navbar key={expand} expand={expand} className="mb-3">
+          <Container fluid>
+            <Navbar.Brand href="#">
+              <Link
+                className=" ps-2 text-uppercase fs-1  text-decoration-none text-black fst-italic"
+                to="/"
+              >
+                tvmaze
+              </Link>
+            </Navbar.Brand>
+            <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} />
+            <Navbar.Offcanvas
+              id={`offcanvasNavbar-expand-${expand}`}
+              aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}
+              placement="end"
+            >
+              <Offcanvas.Header closeButton>
+                <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`}>
+                  <Link
+                    className=" ps-2 text-uppercase fs-1  text-decoration-none text-black fst-italic"
+                    to="/"
+                  >
+                    tvmaze
+                  </Link>
+                </Offcanvas.Title>
+              </Offcanvas.Header>
+              <Offcanvas.Body className=" ">
+                <Nav className="justify-content-center flex-grow-1 pe-3 ">
+                  <Link className="nav-link   menu-item ms-2">Home</Link>
+                  <Link className="nav-link  menu-item ms-2">About</Link>
+                </Nav>
+                <Form className="d-flex">
+                  <Form.Control
+                    type="search"
+                    placeholder="Search"
+                    className="me-2"
+                    aria-label="Search"
+                  />
+                  <Button variant="success">Search</Button>
+                </Form>
+              </Offcanvas.Body>
+            </Navbar.Offcanvas>
+          </Container>
+        </Navbar>
+      ))}
     </div>
   );
 };

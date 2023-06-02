@@ -6,7 +6,7 @@ const AllShow = () => {
   console.log(shows);
 
   return (
-    <div className="container min-vh-100">
+    <div className="container min-vh-100 mt-5">
       <div className="card-container">
         {shows.map((show) => (
           <div key={show.show.id}>
